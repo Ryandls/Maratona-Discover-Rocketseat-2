@@ -1,9 +1,12 @@
-const { response } = require('express');
 const express = require('express');
 const server = express();
+const routes = require('./routes');
 
-//request, response
-server.get('/', (req, res) => {
-  return res.send('Fala tu');
-});
+server.set('view engine', 'ejs');
+
+//habilitar arquivos statics
+server.use(express.static('public'));
+
+server.use(routes);
+
 server.listen(3000, () => console.log('rodando'));
